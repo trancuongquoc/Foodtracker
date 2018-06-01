@@ -16,24 +16,25 @@ class MealViewController: UIViewController, UITextFieldDelegate,UIImagePickerCon
     @IBOutlet weak var imgMeal: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    var meal: Meal?
-    var indexPath: IndexPath!
+    
+    var indexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.delegate = self
         
         // Set up views if editing an existing Meal.
-        if let meal = meal {
-            navigationItem.title = meal.name
-            nameTextField.text = meal.name
-            imgMeal.image = meal.photo
-            ratingControl.rating = meal.rating
+        if let index = indexPath {
+            let meals = DataServices.shared.meals
+            navigationItem.title = meals[index.row].name
+            nameTextField.text = meals[index.row].name
+            imgMeal.image = meals[index.row].photo
+            ratingControl.rating = meals[index.row].rating
         }
-        
+
         updateSaveButtonState()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,21 +55,6 @@ class MealViewController: UIViewController, UITextFieldDelegate,UIImagePickerCon
         navigationItem.title = textField.text
     }
     
-    //MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        guard let button = sender as? UIBarButtonItem, button === saveButton else {
-            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
-            return
-        }
-        
-        let name = nameTextField.text ?? ""
-        let photo = imgMeal.image
-        let rating = ratingControl.rating
-        
-        meal = Meal(name: name, photo: photo, rating: rating)
-    }
-    
     // MARK: Action
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
@@ -84,17 +70,15 @@ class MealViewController: UIViewController, UITextFieldDelegate,UIImagePickerCon
     }
     
     @IBAction func save(_ sender: UIBarButtonItem) {
-            if indexPath != nil {
-                if let meal = meal {
-                    meal.name = nameTextField.text!
-                    meal.photo = imgMeal.image
-                    meal.rating = ratingControl.rating
-                }
-                DataServices.shared.editMeal(at: indexPath, with: meal!)
-            } else {
-                let meal = Meal(name: nameTextField.text!, photo: imgMeal.image, rating: ratingControl.rating)
-                DataServices.shared.addNew(with: meal!)
-            }
+        if let index = indexPath {
+            let meals = DataServices.shared.meals[index.row]
+            meals.name = nameTextField.text!
+            meals.photo = imgMeal.image
+            meals.rating = ratingControl.rating
+        } else {
+            guard let meal = Meal(name: nameTextField.text!, photo: imgMeal.image, rating: ratingControl.rating) else {return}
+            DataServices.shared.addNew(with: meal)
+        }
         navigationController?.popViewController(animated: true)
     }
     
