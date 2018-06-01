@@ -11,14 +11,12 @@ import os.log
 
 class MealTableViewController: UITableViewController {
     
-    var meals: [Meal] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        meals = DataServices.shared.meals
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
@@ -66,7 +64,7 @@ extension MealTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return meals.count
+        return DataServices.shared.meals.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,9 +74,9 @@ extension MealTableViewController {
             fatalError("Some shitty errors")
         }
         
-        cell.mealNameLabel.text = meals[indexPath.row].name
-        cell.mealImageView.image = meals[indexPath.row].photo
-        cell.ratingControl.rating = meals[indexPath.row].rating
+        cell.mealNameLabel.text = DataServices.shared.meals[indexPath.row].name
+        cell.mealImageView.image = DataServices.shared.meals[indexPath.row].photo
+        cell.ratingControl.rating = DataServices.shared.meals[indexPath.row].rating
         
         return cell
     }
@@ -89,11 +87,10 @@ extension MealTableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            meals.remove(at: indexPath.row)
+            DataServices.shared.removeMeal(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             
         }
     }
-    
 }

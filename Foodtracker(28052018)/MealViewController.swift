@@ -71,10 +71,7 @@ class MealViewController: UIViewController, UITextFieldDelegate,UIImagePickerCon
     
     @IBAction func save(_ sender: UIBarButtonItem) {
         if let index = indexPath {
-            let meals = DataServices.shared.meals[index.row]
-            meals.name = nameTextField.text!
-            meals.photo = imgMeal.image
-            meals.rating = ratingControl.rating
+            DataServices.shared.editMeal(at: index, with: nameTextField.text!, with: imgMeal.image!, with: ratingControl.rating)
         } else {
             guard let meal = Meal(name: nameTextField.text!, photo: imgMeal.image, rating: ratingControl.rating) else {return}
             DataServices.shared.addNew(with: meal)

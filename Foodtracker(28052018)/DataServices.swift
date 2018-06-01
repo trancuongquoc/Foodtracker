@@ -28,14 +28,19 @@ class DataServices {
         _meals = loadSampleMeals()
     }
     
-     func editMeal(at indexPath: IndexPath, with meal: Meal) {
-        _meals![indexPath.row] = meal
+    func editMeal(at indexPath: IndexPath, with name: String, with photo: UIImage, with rating: Int) {
+        _meals?[indexPath.row].name = name
+        _meals?[indexPath.row].photo = photo
+        _meals?[indexPath.row].rating = rating
     }
     
      func addNew(with meal: Meal) {
         _meals?.append(meal)
     }
     
+    func removeMeal(at indexPath: IndexPath) {
+        _meals?.remove(at: indexPath.row)
+    }
     private func loadSampleMeals() -> [Meal] {
         var meals = [Meal]()
         let photo1 = UIImage(named: "meal1")
