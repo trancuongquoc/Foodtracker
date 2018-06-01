@@ -10,9 +10,10 @@ import UIKit
 import os.log
 
 class MealTableViewController: UITableViewController {
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.leftBarButtonItem = editButtonItem
     }
     
@@ -24,11 +25,6 @@ class MealTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    // MARK: - Table view data source
-    
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -64,6 +60,15 @@ extension MealTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if DataServices.shared.meals.count > 0 {
+            self.tableView.backgroundView = nil
+        } else {
+            var noDatalabel = UILabel(frame: CGRect(x: 0,y: 0,width: self.tableView.bounds.size.width,height: self.tableView.bounds.size.height))
+            noDatalabel.text = "No Data Available."
+            noDatalabel.textColor = UIColor(red: 22.0/255.0, green: 106.0/255.0, blue: 176.0/255.0, alpha: 1.0)
+            noDatalabel.textAlignment = NSTextAlignment.center
+            self.tableView.backgroundView = noDatalabel
+        }
         return DataServices.shared.meals.count
     }
     
