@@ -11,16 +11,17 @@ import os.log
 
 class MealTableViewController: UITableViewController {
     
-    var meals = [Meal]()
+    var meals = DataServices.shared.meals
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
-        
-        loadSampleMeals()
-        
-
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -61,42 +62,21 @@ class MealTableViewController: UITableViewController {
         }
     }
     
-    private func loadSampleMeals() {
-        let photo1 = UIImage(named: "meal1")
-        let photo2 = UIImage(named: "meal2")
-        let photo3 = UIImage(named: "meal3")
-        
-        guard let meal1 = Meal(name: "Fucking Salad", photo: photo1, rating: 4) else {
-            fatalError("Unable to instantiate meal1")
-        }
-        
-        guard let meal2 = Meal(name: "Shitty potatoes", photo: photo2, rating: 2) else {
-            fatalError("Unable to instantiate meal1")
-        }
-        
-        guard let meal3 = Meal(name: "Pasta", photo: photo3, rating: 1) else {
-            fatalError("Unable to instantiate meal1")
-        }
-        
-        meals += [meal1, meal2, meal3]
-    }
-    
-
-    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? MealViewController, let meal = sourceViewController.meal {
-            
-            if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                // Update an existing meal.
-                meals[selectedIndexPath.row] = meal
-                tableView.reloadRows(at: [selectedIndexPath], with: .none)
-            } else {
-                // Add a new meal.
-                let newIndexPath = IndexPath(row: meals.count, section: 0)
-                meals.append(meal)
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-            }
-        }
-    }
+//    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+//        if let sourceViewController = sender.source as? MealViewController, let meal = sourceViewController.meal {
+//            
+//            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+//                // Update an existing meal.
+//                meals[selectedIndexPath.row] = meal
+//                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+//            } else {
+//                // Add a new meal.
+//                let newIndexPath = IndexPath(row: meals.count, section: 0)
+//                meals.append(meal)
+//                tableView.insertRows(at: [newIndexPath], with: .automatic)
+//            }
+//        }
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -118,6 +98,7 @@ class MealTableViewController: UITableViewController {
             
             let selectedMeal = meals[indexPath.row]
             mealDetailViewController.meal = selectedMeal
+            mealDetailViewController.indexPath = indexPath
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")

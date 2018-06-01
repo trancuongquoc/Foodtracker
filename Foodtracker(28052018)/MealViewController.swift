@@ -17,6 +17,7 @@ class MealViewController: UIViewController, UITextFieldDelegate,UIImagePickerCon
     @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var meal: Meal?
+    var indexPath: IndexPath!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +82,22 @@ class MealViewController: UIViewController, UITextFieldDelegate,UIImagePickerCon
             fatalError("The MealViewController is not inside a navigation controller.")
         }
     }
+    
+    @IBAction func save(_ sender: UIBarButtonItem) {
+            if indexPath != nil {
+                if let meal = meal {
+                    meal.name = nameTextField.text!
+                    meal.photo = imgMeal.image
+                    meal.rating = ratingControl.rating
+                }
+                DataServices.shared.editMeal(at: indexPath, with: meal!)
+            } else {
+                let meal = Meal(name: nameTextField.text!, photo: imgMeal.image, rating: ratingControl.rating)
+                DataServices.shared.addNew(with: meal!)
+            }
+        navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: UIImagePickerControllerDelegate
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
         nameTextField.resignFirstResponder()

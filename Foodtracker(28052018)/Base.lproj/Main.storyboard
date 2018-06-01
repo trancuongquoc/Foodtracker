@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M95-0x-Ovn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M95-0x-Ovn">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -61,7 +60,7 @@
                     <navigationItem key="navigationItem" title="Your Meals" id="azP-G2-hYu">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="mfr-UH-AfJ">
                             <connections>
-                                <segue destination="pyT-6A-tvu" kind="presentation" identifier="AddItem" id="vF2-fk-FAl"/>
+                                <segue destination="BYZ-38-t0r" kind="show" id="0Yw-LG-OgH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -130,7 +129,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="b6p-hI-3rS">
                             <connections>
-                                <segue destination="wMT-zu-WVJ" kind="unwind" unwindAction="unwindToMealListWithSender:" id="5qW-pw-RQU"/>
+                                <action selector="save:" destination="BYZ-38-t0r" id="zXp-3w-DUX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -142,7 +141,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="wMT-zu-WVJ" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="qVZ-FW-KFj">
                     <connections>
                         <action selector="selectImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="tpq-IR-iqG"/>
@@ -169,29 +167,11 @@
             </objects>
             <point key="canvasLocation" x="-1230" y="117"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="bAD-Ek-Zk4">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pyT-6A-tvu" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="82m-ir-ZVB">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ITp-lT-6L0"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fGA-KS-Fit" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="254" y="488"/>
-        </scene>
     </scenes>
     <resources>
         <image name="default" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="o5F-Lk-uKF"/>
+        <segue reference="0Yw-LG-OgH"/>
     </inferredMetricsTieBreakers>
 </document>

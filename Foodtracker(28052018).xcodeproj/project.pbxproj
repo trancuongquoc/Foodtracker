@@ -17,6 +17,7 @@
 		4EFB6F1220BD4824009711F7 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFB6F1120BD4824009711F7 /* Meal.swift */; };
 		4EFB6F1420BD4B90009711F7 /* MealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFB6F1320BD4B90009711F7 /* MealTableViewCell.swift */; };
 		4EFB6F1620BD4E5F009711F7 /* MealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFB6F1520BD4E5F009711F7 /* MealTableViewController.swift */; };
+		85A5E66120BF9467004C7B7A /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A5E66020BF9467004C7B7A /* DataServices.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		4EFB6F1120BD4824009711F7 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		4EFB6F1320BD4B90009711F7 /* MealTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTableViewCell.swift; sourceTree = "<group>"; };
 		4EFB6F1520BD4E5F009711F7 /* MealTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTableViewController.swift; sourceTree = "<group>"; };
+		85A5E66020BF9467004C7B7A /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			children = (
 				4E308A2420BBE28A0068AD5E /* AppDelegate.swift */,
 				4E308A2620BBE28A0068AD5E /* MealViewController.swift */,
+				85A5E66020BF9467004C7B7A /* DataServices.swift */,
 				4EFB6F1520BD4E5F009711F7 /* MealTableViewController.swift */,
 				4EFB6F1120BD4824009711F7 /* Meal.swift */,
 				4EFB6F0F20BD2E68009711F7 /* RatingControl.swift */,
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EFB6F1220BD4824009711F7 /* Meal.swift in Sources */,
+				85A5E66120BF9467004C7B7A /* DataServices.swift in Sources */,
 				4E308A2720BBE28A0068AD5E /* MealViewController.swift in Sources */,
 				4EFB6F1020BD2E68009711F7 /* RatingControl.swift in Sources */,
 				4E308A2520BBE28A0068AD5E /* AppDelegate.swift in Sources */,
@@ -372,6 +376,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N4YXZ25XGE;
 				INFOPLIST_FILE = "Foodtracker(28052018)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Foodtracker-28052018-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -387,6 +392,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N4YXZ25XGE;
 				INFOPLIST_FILE = "Foodtracker(28052018)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Foodtracker-28052018-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
